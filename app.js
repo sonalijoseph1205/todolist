@@ -10,7 +10,7 @@ app.set('view engine','ejs');
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb+srv://admin-sonali:sonali1205@cluster0.3v3kd.mongodb.net/todolistDB", { useNewUrlParser: true , useUnifiedTopology: true , useFindAndModify : false});
+mongoose.connect("mongodb+srv://admin-sonali:sonali1205@cluster1.mmsmd.mongodb.net/todolistDB", { useNewUrlParser: true , useUnifiedTopology: true , useFindAndModify : false});
 
 const itemSchema=new mongoose.Schema({
 name:String
@@ -64,6 +64,7 @@ Item.find({}, function(err,foundItems)
       res.render("list",{listTitle:"Today",newListItems:foundItems});
   }
 
+
 });
 
 });
@@ -102,6 +103,7 @@ app.post("/",function(req,res)
 const itemName = req.body.newItem;
 const listName = req.body.list;
 
+
 const item = new Item({
   name: itemName
 });
@@ -119,6 +121,7 @@ else{
   res.redirect("/"+ listName);
 });
 }
+
 });
 
 app.post("/delete",function(req,res)
